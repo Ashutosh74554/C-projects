@@ -96,7 +96,7 @@ void mul()
 }
 void div()
 {
-	int a,b;
+	float a,b;
 	float res;
 	printf("\n\t\t\tEnter two integers: ");
 	scanf("%f %f", &a, &b);
@@ -132,10 +132,10 @@ void sqr()
 void fact()
 {
 	int a,i;
-	double res=1;
+	int res=1;
 	printf("\n\t\t\tEnter the integer: ");
 	scanf("%d", &a);
 	for(i=a;i>=1;i--)
 		res*=i;
-	printf("\n\t\t\tResult of factorial= %.2lf", res);
+	printf("\n\t\t\tResult of factorial= %d", res);
 }

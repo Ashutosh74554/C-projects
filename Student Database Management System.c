@@ -122,7 +122,7 @@ void main()
 					fclose( fp );
 					fclose( ft );
 					if(count1==count2)
-						printf("\nRecord not found");
+						printf("\nRecord not found\n");
 					remove ("StudentDBMS.DAT");
 					rename ("Tstudent.DAT", "StudentDBMS.DAT");
 					fp = fopen ("StudentDBMS.DAT", "rb+");

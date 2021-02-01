@@ -57,7 +57,7 @@ void main()
 				another= 'Y';
 				while(another == 'Y' || another == 'y')
 				{
-					printf("\nEnter data of the student: ");
+					printf("\nEnter name, age and percentage of the student: ");
 					scanf("%s %d %f", s.name, &s.age, &s.per);
 					fwrite(&s, rec_size, 1, fp);
 					printf("\nAdd another record (Y/N): ");
@@ -86,7 +86,7 @@ void main()
 					{
 						if(strcmp (s.name, studentname)==0)
 						{
-							printf("\nEnter new data: ");
+							printf("\nEnter new name, age and percentage: ");
 							scanf("%s %d %f", s.name, &s.age, &s.per);
 							fseek(fp, -rec_size, SEEK_CUR);
 							fwrite(&s, rec_size, 1, fp);
@@ -103,6 +103,7 @@ void main()
 				break;
 			case '4':
 				another='Y';
+				int count1=0, count2=0;
 				while(another=='Y' || another=='y')
 				{
 					printf("\nEnter name of student to delete: ");
@@ -111,11 +112,17 @@ void main()
 					rewind(fp);
 					while(fread(&s, rec_size, 1, fp)==1)
 					{
+						count1++;
 						if(strcmp(s.name, studentname)!=0)
+						{
+							count2++;
 							fwrite(&s, rec_size,1 ,ft);
+						}	
 					}
 					fclose( fp );
 					fclose( ft );
+					if(count1==count2)
+						printf("\nRecord not found");
 					remove ("StudentDBMS.DAT");
 					rename ("Tstudent.DAT", "StudentDBMS.DAT");
 					fp = fopen ("StudentDBMS.DAT", "rb+");

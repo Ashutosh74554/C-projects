@@ -110,7 +110,7 @@ void main()
 					printf("\n\n\t\tEnter name of the customer: ");
 					scanf("%s", customername);
 					rewind(fp);
-					int add;
+					int add, s=0;
 					while(fread(&c, rec_size, 1, fp)==1)
 					{	
 						if(strcmp(customername,c.name)==0)
@@ -121,8 +121,11 @@ void main()
 							fseek(fp, -rec_size, SEEK_CUR);
 							fwrite(&c, rec_size, 1, fp);
 							printf("\n\t\tYour current balance: %d", c.balance);	
+							s++;
 						}
 					}
+					if(s==0)
+						printf("\nRecord not found");
 					printf("\nAdd to another account (Y/N): ");
 					fflush(stdin);
 					another=getche();
@@ -136,7 +139,7 @@ void main()
 					printf("\n\n\t\tEnter name of customer: ");
 					scanf("%s", customername);
 					rewind(fp);
-					int deduct;
+					int deduct, s1=0;
 					while(fread(&c, rec_size, 1, fp)==1)
 					{	
 						if(strcmp(customername,c.name)==0)
@@ -146,9 +149,12 @@ void main()
 							c.balance-=deduct;
 							fseek(fp, -rec_size, SEEK_CUR);
 							fwrite(&c, rec_size, 1, fp);
-							printf("\n\t\tYour current balance: %d", c.balance);	
+							printf("\n\t\tYour current balance: %d", c.balance);
+							s1++;
 						}
 				    }
+				    if(s1==0)
+					    printf("\nRecord not found");
 				    printf("\n\t\tWithdraw from another account (Y/N): ");
 				    fflush(stdin);
 				    another=getche();
